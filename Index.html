@@ -2,16 +2,93 @@
 <html>
 <head>
   <title>Product Calibration Form</title>
+  <style>
+    /* Form styles */
+    form {
+      width: 500px;
+      margin: 0 auto;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    input[type="submit"] {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Error messages */
+    .error {
+      color: red;
+    }
+  </style>
 </head>
 <body>
   <h1>Product Calibration Form</h1>
 
   <form action="/generate-page.php" method="post">
+    <label for="product_name">Product name</label>
     <input type="text" name="product_name" placeholder="Product name">
+
+    <label for="serial_number">Serial number</label>
     <input type="text" name="serial_number" placeholder="Serial number">
+
+    <label for="calibration_date">Calibration date</label>
     <input type="date" name="calibration_date" placeholder="Calibration date">
+
+    <label for="next_calibration_date">Next calibration date</label>
     <input type="date" name="next_calibration_date" placeholder="Next calibration date">
+
     <input type="submit" value="Send">
   </form>
+
+  <script>
+    // Validate the form
+    function validateForm() {
+      var productName = document.getElementById('product_name');
+      var serialNumber = document.getElementById('serial_number');
+      var calibrationDate = document.getElementById('calibration_date');
+      var nextCalibrationDate = document.getElementById('next_calibration_date');
+
+      // Check if the product name is empty
+      if (productName.value === '') {
+        document.getElementById('product_name_error').innerHTML = 'Please enter a product name.';
+        return false;
+      }
+
+      // Check if the serial number is empty
+      if (serialNumber.value === '') {
+        document.getElementById('serial_number_error').innerHTML = 'Please enter a serial number.';
+        return false;
+      }
+
+      // Check if the calibration date is empty
+      if (calibrationDate.value === '') {
+        document.getElementById('calibration_date_error').innerHTML = 'Please enter a calibration date.';
+        return false;
+      }
+
+      // Check if the next calibration date is empty
+      if (nextCalibrationDate.value === '') {
+        document.getElementById('next_calibration_date_error').innerHTML = 'Please enter a next calibration date.';
+        return false;
+      }
+
+      // If all the fields are valid, submit the form
+      return true;
+    }
+
+    // Submit the form when the "Send" button is clicked
+    document.getElementById('form').addEventListener('submit', function(event) {
+      if (!validateForm()) {
+        event.preventDefault();
+      }
+    });
+  </script>
 </body>
 </html>
