@@ -1,1 +1,1 @@
-# Statictest.github.io
+# labelmyproduct.github.io
